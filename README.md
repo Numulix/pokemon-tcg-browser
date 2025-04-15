@@ -37,7 +37,7 @@ A web application built with React and TypeScript to browse and search for Poké
 
 1.  Clone the repository.
 2.  Install dependencies: `npm install` or `yarn install`
-3.  Run the development server: `npm start` or `yarn start`
+3.  Run the development server: `npm run dev` or `yarn run dev`
 
 ## TODO / Future Features
 
