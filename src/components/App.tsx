@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query';
 import { fetchCards, SearchCard } from '../services/tcgdex';
+import PokemonCard from './pokemon-card/PokemonCard';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -11,8 +12,7 @@ function App() {
     isLoading,
     isError,
     error,
-    isFetching,
-    refetch
+    isFetching
   } = useQuery<SearchCard[], Error>({
     queryKey: ['cards', submittedSearchTerm],
     queryFn: () => fetchCards(submittedSearchTerm),
@@ -78,20 +78,10 @@ function App() {
             {!isLoading && !isError && results && results.length > 0 && (
               <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
                 {results.map((card) => (
-                  <div key={card.id} className='border rounded-lg p-2 shadow hover:shadow-md transition-shadow duration-200 flex flex-col items-center bg-gray-50'>
-                    <img 
-                      src={card.image ? `${card.image}/low.webp` : 'https://placehold.co/240x330/eee/ccc?text=No+Image'}
-                      alt={card.name}
-                      className='w-full h-auto rounded mb-2 object-contain'
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.onerror = null;
-                        target.src = 'https://placehold.co/240x330/eee/ccc?text=No+Image';
-                      }}
-                      loading='lazy'
-                    />
-                    <p className='text-sm font-semibold text-center text-gray-700'>{card.name}</p>
-                  </div>
+                  <PokemonCard key={card.id} card={card}>
+                    <PokemonCard.Image />
+                    <PokemonCard.Name />
+                  </PokemonCard>
                 ))}
               </div>
             )}

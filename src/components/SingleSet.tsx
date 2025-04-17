@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { NavLink, useParams } from "react-router";
 import { fetchSingleSet, SearchCard, SingleSetData } from "../services/tcgdex";
+import PokemonCard from "./pokemon-card/PokemonCard";
 
 function SingleSet () {
     const { setId } = useParams<{ setId: string }>();
@@ -57,21 +58,11 @@ function SingleSet () {
                     <h2 className="text-2xl font-semibold text-gray-700 mb-4">Cards in this set: {setDetails.cardCount.total}</h2>
                     <div className="grid grid-cols 2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                         {setDetails.cards.map((card: SearchCard) => (
-                            <div key={card.id} className="border rounded-lg p-2 shadow hover:shadow-md transition-shadow flex flex-col items-center bg-gray-50">
-                                <img 
-                                    src={card.image ? `${card.image}/low.webp` : 'https://placehold.co/240x330/eee/ccc?text=No+Image'}
-                                    alt={card.name}
-                                    className="w-full h-auto rounded mb-2 object-contain"
-                                    onError={(e) => {
-                                        const target = e.target as HTMLInputElement;
-                                        target.onerror = null;
-                                        target.src = 'https://placehold.co/240x330/eee/ccc?text=No+Image';
-                                    }}
-                                    loading="lazy"
-                                />
-                                <p className="text-xs font-semibold text-center text-gray-700 mt-1">{card.name}</p>
-                                <p className="text-xs text-center text-gray-500">{card.localId} / {setDetails.cardCount.official}</p>
-                            </div>
+                            <PokemonCard key={card.id} card={card}>
+                                <PokemonCard.Image />
+                                <PokemonCard.Name />
+                                <PokemonCard.Number officialNumber={setDetails.cardCount.official} />
+                            </PokemonCard>
                         ))}
                     </div>
                 </div>
