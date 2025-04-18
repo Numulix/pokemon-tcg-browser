@@ -1,4 +1,5 @@
 const API_BASE_URL = 'https://api.tcgdex.net/v2/en';
+const ITEMS_PER_PAGE = 15;
 
 export type SearchCard = {
     id: string;
@@ -71,4 +72,23 @@ export const fetchSingleSet = async (setId: string): Promise<SingleSetData> => {
     const response = await fetch(url);
     const singleSet: SingleSetData = await response.json();
     return singleSet;
+}
+
+export const fetchSearchCardsWithPage = async (searchTerm: string, page: number = 1): Promise<SearchCard[]> => {
+    if (!searchTerm.trim()) return [];
+
+    const searchParams = new URLSearchParams({ name: searchTerm, 'pagination:page': String(page), 'pagination:itemsPerPage': String(ITEMS_PER_PAGE) });
+    const url = `${API_BASE_URL}/cards?${searchParams.toString()}`
+
+    console.log("Fetching cards from URL: ", url);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`API request failed: ${response.status} ${response.statusText}`)
+    }
+    
+    const cards: SearchCard[] = await response.json();
+
+    return cards;
 }

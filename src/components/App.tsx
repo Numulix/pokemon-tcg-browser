@@ -1,27 +1,32 @@
-import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query';
-import { fetchCards, SearchCard } from '../services/tcgdex';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import PokemonCard from './pokemon-card/PokemonCard';
+import { useInfiniteCardSearch } from '../hooks/useInfiniteCardSearch';
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [submittedSearchTerm, setSubmittedSearchTerm] = useState<string>("");
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const {
     data: results,
     isLoading,
     isError,
     error,
-    isFetching
-  } = useQuery<SearchCard[], Error>({
-    queryKey: ['cards', submittedSearchTerm],
-    queryFn: () => fetchCards(submittedSearchTerm),
-    enabled: submittedSearchTerm.trim() !== "",
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-    refetchOnReconnect: false,
-    retry: false
-  });
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useInfiniteCardSearch(submittedSearchTerm);
+
+  useEffect(() => {
+    const currentObserver = observer.current;
+
+    // Prevent lingering observers
+    return () => {
+      if (currentObserver) {
+        currentObserver.disconnect();
+      }
+    };
+  }, []);
 
   const handleSearchSubmit = () => {
     const trimmedSearchTerm = searchTerm.trim();
@@ -38,7 +43,24 @@ function App() {
     }
   }
 
-  const showNoResults = !isLoading && !isError && submittedSearchTerm && results?.length === 0;
+  const lastElementRef = useCallback(
+    (node: HTMLDivElement) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+  
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          fetchNextPage();
+        }
+      });
+  
+      if (node) observer.current.observe(node);
+    },
+    [fetchNextPage, hasNextPage, isLoading]
+  )
+
+
+  const showNoResults = !isLoading && !isError && submittedSearchTerm && results?.pages.length === 0;
 
   return (
     <>
@@ -75,13 +97,18 @@ function App() {
               </p>
             )}
 
-            {!isLoading && !isError && results && results.length > 0 && (
+            {!isLoading && !isError && results && results.pages.length > 0 && (
               <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
-                {results.map((card) => (
-                  <PokemonCard key={card.id} card={card}>
-                    <PokemonCard.Image />
-                    <PokemonCard.Name />
-                  </PokemonCard>
+                {results.pages.map((group, i) => (
+                  <Fragment key={i}>
+                    {group.map((card) => (
+                      <PokemonCard key={card.id} card={card}>
+                        <div ref={lastElementRef}></div>
+                        <PokemonCard.Image />
+                        <PokemonCard.Name />
+                      </PokemonCard>
+                    ))}
+                  </Fragment>
                 ))}
               </div>
             )}
