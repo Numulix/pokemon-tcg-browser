@@ -1,5 +1,6 @@
 import { SearchCard } from "../../services/tcgdex";
 import { PokemonCardContext } from "./pokemonCardContext";
+import PokemonCardFavorite from "./PokemonCardFavorite";
 import PokemonCardImage from "./PokemonCardImage";
 import PokemonCardName from "./PokemonCardName";
 import PokemonCardNumber from "./PokemonCardNumber";
@@ -22,5 +23,6 @@ function PokemonCard ({ card, children }: PokemonCardProps) {
 PokemonCard.Image = PokemonCardImage;
 PokemonCard.Name = PokemonCardName;
 PokemonCard.Number = PokemonCardNumber;
+PokemonCard.Favorite = PokemonCardFavorite;
 
 export default PokemonCard;

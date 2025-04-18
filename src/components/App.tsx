@@ -104,6 +104,7 @@ function App() {
                     {group.map((card) => (
                       <PokemonCard key={card.id} card={card}>
                         <div ref={lastElementRef}></div>
+                        <PokemonCard.Favorite />
                         <PokemonCard.Image />
                         <PokemonCard.Name />
                       </PokemonCard>
