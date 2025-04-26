@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router";
 import App from "./components/App";
 import Layout from "./components/Layout";
 import Sets from "./components/Sets";
-import { fetchSets, Set } from "./services/tcgdex";
 import SingleSet from "./components/SingleSet";
+import { fetchSets } from "./services/pokemonTcgApi";
+import { Set } from "./types/setTypes";
 
 export const routes = createBrowserRouter([
     {

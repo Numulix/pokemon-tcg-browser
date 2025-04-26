@@ -1,4 +1,5 @@
 import { CardObject } from "../types/cardTypes";
+import { Set } from "../types/setTypes";
 
 const BASE_URL = "https://api.pokemontcg.io/v2"
 const ITEMS_PER_PAGE = 15;
@@ -26,4 +27,15 @@ export const fetchCards = async (searchTerm: string, page: number = 1): Promise<
     const result = await response.json();
 
     return result.data as CardObject[];
+}
+
+export const fetchSets = async (): Promise<Set[]> => {
+    const url = `${BASE_URL}/sets`;
+    const response = await fetch(url, { headers: headersConfig });
+
+    console.log("POKEMON TCG API: Fetching sets ", url);
+
+    const result = await response.json();
+
+    return result.data as Set[];
 }

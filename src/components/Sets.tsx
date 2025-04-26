@@ -1,5 +1,5 @@
 import { NavLink, useLoaderData } from "react-router";
-import { Set } from "../services/tcgdex";
+import { Set } from "../types/setTypes";
 
 function Sets() {
     const { sets } = useLoaderData();
@@ -13,23 +13,23 @@ function Sets() {
                         {sets.map((set: Set) => (
                             <NavLink key={set.id} to={`/set/${set.id}`}>
                                 <div className="border rounded-lg p-4 shadow hover:shadow-lg transition-shadow flex flex-col items-center text-center bg-gray-50">
-                                    {set.logo && (
+                                    {set.images && (
                                         <img
-                                            src={`${set.logo}.png`}
+                                            src={`${set.images.logo}`}
                                             alt={`${set.name} logo`}
                                             className="w-16 h-16 object-contain mb-3"
                                             loading="lazy"
                                             onError={(e) => { e.currentTarget.style.display = 'none' }}
                                         />
                                     )}
-                                    {!set.logo && (
+                                    {!set.images && (
                                         <div className="w-16 h-16 mb-3 flex items-center justify-center bg-gray-200 rounded-full">
                                             <span className="text-xs text-gray-500">No Logo</span>
                                         </div>
                                     )}
                                     <p className="text-lg font-semibold text-gray-800 mb-1">{set.name}</p>
                                     <p className="text-sm text-gray-500">
-                                        Cards: {set.cardCount.official} official ({set.cardCount.total} total)
+                                        Cards: {set.printedTotal} official ({set.total} total)
                                     </p>
                                 </div>
                             </NavLink>

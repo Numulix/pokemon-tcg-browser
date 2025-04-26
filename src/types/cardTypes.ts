@@ -1,3 +1,5 @@
+import { Set } from "./setTypes";
+
 type Ability = {
     name: string;
     text: string;
@@ -17,13 +19,13 @@ type Weakness = {
     value: string;
 }
 
-type Legalities = {
+export type Legalities = {
     unlimited: string;
     standard: string;
     expanded: string;
 }
 
-type CardImage = {
+type Images = {
     small: string;
     large: string;
 }
@@ -45,5 +47,6 @@ export type CardObject = {
     flavorText: string;
     nationalPokedexNumbers: number[];
     legalities: Legalities;
-    images: CardImage;
+    images: Images;
+    set: Set;
 }
