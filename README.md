@@ -41,9 +41,9 @@ A web application built with React and TypeScript to browse and search for Poké
 
 ## TODO / Future Features
 
-* **Card Image Expansion:** Allow users to click on a card image (in search results or set view) to see a larger version (e.g., in a modal or lightbox).
+* **Card Details:** Allow users to click on a card image (in search results or set view) to see card details in a modal view.
 * **Infinite Scrolling:** Implement infinite scrolling for:
-    * Card search results on the Card Browser page.
+    * ~~Card search results on the Card Browser page.~~
     * The list of cards on the Single Set page.
 * **Layout Customization:** Add controls (e.g., buttons) to allow users to change the number of columns in the card/set grids.
 * **Filtering:**
