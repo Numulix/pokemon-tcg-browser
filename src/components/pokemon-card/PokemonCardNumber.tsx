@@ -5,10 +5,10 @@ interface PokemonCardNumberProps {
 }
 
 function PokemonCardNumber({ officialNumber }: PokemonCardNumberProps) {
-    const { localId } = usePokemonCardContext();
+    const { number } = usePokemonCardContext();
 
     return (
-        <p className="text-xs text-center text-gray-500">{localId} / {officialNumber}</p>
+        <p className="text-xs text-center text-gray-500">{number} / {officialNumber}</p>
     )
 
 }

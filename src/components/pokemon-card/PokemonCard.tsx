@@ -1,4 +1,4 @@
-import { SearchCard } from "../../services/tcgdex";
+import { CardObject } from "../../types/cardTypes";
 import { PokemonCardContext } from "./pokemonCardContext";
 import PokemonCardFavorite from "./PokemonCardFavorite";
 import PokemonCardImage from "./PokemonCardImage";
@@ -6,7 +6,7 @@ import PokemonCardName from "./PokemonCardName";
 import PokemonCardNumber from "./PokemonCardNumber";
 
 interface PokemonCardProps {
-    card: SearchCard;
+    card: CardObject;
     children?: React.ReactNode;
 }
 

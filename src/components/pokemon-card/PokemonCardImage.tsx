@@ -4,11 +4,11 @@ const imagePlaceholderUrl = 'https://placehold.co/240x330/eee/ccc?text=No+Image'
 
 function PokemonCardImage () {
 
-    const { image, name } = usePokemonCardContext();
+    const { images, name } = usePokemonCardContext();
 
     return (
         <img 
-            src={image ? `${image}/low.webp` : imagePlaceholderUrl}
+            src={images.large ? `${images.large}` : imagePlaceholderUrl}
             className="w-full h-auto rounded mb-2 object-contain"
             alt={`${name} card image`}
             onError={(e) => {

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { SearchCard } from "../../services/tcgdex";
+import { CardObject } from "../../types/cardTypes";
 
-export const PokemonCardContext = createContext<SearchCard | undefined>(undefined);
+export const PokemonCardContext = createContext<CardObject | undefined>(undefined);
 
 export function usePokemonCardContext() {
     const card = useContext(PokemonCardContext);

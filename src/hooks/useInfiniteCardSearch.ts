@@ -1,12 +1,12 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchSearchCardsWithPage } from "../services/tcgdex";
+import { fetchCards } from "../services/pokemonTcgApi";
 
 export function useInfiniteCardSearch(searchTerm: string) {
     return useInfiniteQuery({
         queryKey: ['cards', searchTerm],
             queryFn: ({ pageParam = 1 }) => {
               if (typeof pageParam === 'number') {
-                return fetchSearchCardsWithPage(searchTerm, pageParam);
+                return fetchCards(searchTerm, pageParam);
               } else {
                 throw new Error('Invalid pageParam type');
               }
