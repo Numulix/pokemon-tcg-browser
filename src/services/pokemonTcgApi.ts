@@ -39,3 +39,18 @@ export const fetchSets = async (): Promise<Set[]> => {
 
     return result.data as Set[];
 }
+
+export const fetchSetCards = async (setId: string): Promise<CardObject[]> => {
+    const keywordMatch = `set.id:${setId}`;
+    const searchParams = new URLSearchParams({ q: keywordMatch });
+
+    const url = `${BASE_URL}/cards?${searchParams.toString()}`;
+
+    const response = await fetch(url, { headers: headersConfig });
+
+    console.log("POKEMON TCG API: Fetching set cards ", url);
+
+    const result = await response.json();
+
+    return result.data as CardObject[];
+}
