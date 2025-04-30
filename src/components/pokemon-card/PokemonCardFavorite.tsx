@@ -22,7 +22,7 @@ function PokemonCardFavorite() {
                     isFavorite
                         ? 'text-yellow-400 hover:text-yellow-500' // Style for favorited
                         : 'text-gray-300 hover:text-yellow-400' // Style for not favorited
-                } bg-white bg-opacity-50 hover:bg-opacity-75`}
+                } bg-opacity-50 hover:bg-opacity-75`}
                 aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
                 title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
             >

@@ -64,8 +64,8 @@ function App() {
 
   return (
     <>
-        <div className="bg-white bg-opacity-95 rounded-lg shadow-xl p-6 mt-10">
-          <h1 className='text-3xl font-bold text-gray-800 mb-6 text-center'>Pokemon TCG Search</h1>
+        <div className="bg-base-100 bg-opacity-95 rounded-lg shadow-xl p-6 mt-10">
+          <h1 className='text-3xl font-bold mb-6 text-center'>Pokemon TCG Search</h1>
 
           <div className='flex flex-col sm:flex-row gap-2 mb-6'>
             <input 
@@ -74,12 +74,12 @@ function App() {
               onChange={handleInputChange}
               onKeyDown={handleKeyPress}
               placeholder='Enter card name (e.g. Pikachu, Charizard....)'
-              className='flex-grow px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200'
+              className='flex-grow px-4 py-2 border border-gray-300 rounded-lg input'
               disabled={isLoading || isFetching}
             />
             <button
               onClick={handleSearchSubmit}
-              className={`px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-200 ${(isLoading || isFetching) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+              className={`px-6 py-2 rounded-lg font-semibold focus:outline-none focus:ring-2 btn btn-primary ${(isLoading || isFetching) ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
               disabled={isLoading || isFetching}
             >
               {isLoading || isFetching ? 'Searching...' : 'Search'}
@@ -87,7 +87,7 @@ function App() {
           </div>
 
           <div className='mt-6 min-h-[200px]'>
-            {isLoading && <p className='text-center text-gray-600'>Loading cards...</p>}
+            {isLoading && <p className='text-center text-sm'>Loading cards...</p>}
 
             {isFetching && !isLoading && <p className='text-center text-gray-500 text-sm'>Updating...</p>}
 

@@ -8,7 +8,7 @@ function PokemonCardNumber({ officialNumber }: PokemonCardNumberProps) {
     const { number } = usePokemonCardContext();
 
     return (
-        <p className="text-xs text-center text-gray-500">{number} / {officialNumber}</p>
+        <p className="text-xs text-center">{number} / {officialNumber}</p>
     )
 
 }

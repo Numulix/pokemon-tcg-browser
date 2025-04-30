@@ -13,7 +13,7 @@ interface PokemonCardProps {
 function PokemonCard ({ card, children }: PokemonCardProps) {
     return (
         <PokemonCardContext.Provider value={card}>
-            <div className="border rounded-lg p-2 shadow hover:shadow-md transition-shadow duration-200 flex flex-col items-center bg-gray-50">
+            <div className="card card-border border-base-300 rounded-lg p-2 hover:scale-125 hover:z-20 transform transition duration-500 flex flex-col items-center bg-base-200">
                 {children}
             </div>
         </PokemonCardContext.Provider>

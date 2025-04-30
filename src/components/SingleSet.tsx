@@ -20,10 +20,10 @@ function SingleSet () {
     })
 
     return (
-        <div className="w-full bg-white bg-opacity-95 rounded-lg shadow-xl p-6">
-            <NavLink to="/sets" className="text-blue-600 hover:underline mb-4 inline-block">&larr; Back to Sets List</NavLink>
+        <div className="w-full bg-base-100 bg-opacity-95 rounded-lg shadow-xl p-6">
+            <NavLink to="/sets" className="link link-accent hover:underline mb-4 inline-block">&larr; Back to Sets List</NavLink>
 
-            {isLoading && <p className="text-center text-gray-600 mt-10">Loading set details...</p>}
+            {isLoading && <p className="text-center mt-10">Loading set details...</p>}
 
             {isError && (
                 <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg mt-10">
@@ -43,17 +43,17 @@ function SingleSet () {
                             />
                         )}
                         <div>
-                            <h1 className="text-3xl font-bold text-gray-800 text-center sm:text-left">{setCards[0].set.name}</h1>
-                            <p className="text-gray-600 text-center sm:text-left">Released: {new Date(setCards[0].set.releaseDate).toLocaleDateString()}</p>
+                            <h1 className="text-3xl font-bold text-center sm:text-left">{setCards[0].set.name}</h1>
+                            <p className="text-center sm:text-left">Released: {new Date(setCards[0].set.releaseDate).toLocaleDateString()}</p>
                         </div>
                     </div>
 
-                    <div className="mb-6 bg-gray-100 p-4 rounded-lg shadow-inner">
-                        <h2 className="text-xl font-semibold text-gray-700 mb-2">Set count</h2>
+                    <div className="mb-6 bg-base-200 border border-base-300 p-4 rounded-lg shadow-inner">
+                        <h2 className="text-xl font-semibold mb-2">Set count</h2>
                         <p>Official cards: {setCards[0].set.total}</p>
                     </div>
 
-                    <h2 className="text-2xl font-semibold text-gray-700 mb-4">Cards in this set: {setCards[0].set.total}</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Cards in this set: {setCards[0].set.total}</h2>
                     <div className="grid grid-cols 2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                         {setCards.map((card: CardObject) => (
                             <PokemonCard key={card.id} card={card}>
