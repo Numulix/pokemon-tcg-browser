@@ -87,9 +87,11 @@ function App() {
           </div>
 
           <div className='mt-6 min-h-[200px]'>
-            {isLoading && <p className='text-center text-sm'>Loading cards...</p>}
-
-            {isFetching && !isLoading && <p className='text-center text-gray-500 text-sm'>Updating...</p>}
+            {isLoading && (
+              <div className='flex flex-row justify-center items-center'>
+                 <span className='loading loading-spinner loading-lg'></span>
+              </div>
+            )}
 
             {isError && (
               <p className='text-center text-red-600 bg-red-100 p-3 rounded-lg'>
@@ -111,6 +113,12 @@ function App() {
                     ))}
                   </Fragment>
                 ))}
+              </div>
+            )}
+
+            {isFetching && !isLoading && (
+              <div className='flex flex-row justify-center items-center mt-4'>
+                <p>Loading more cards <span className='loading loading-infinity loading-lg'></span></p>
               </div>
             )}
 

@@ -23,7 +23,11 @@ function SingleSet () {
         <div className="w-full bg-base-100 bg-opacity-95 rounded-lg shadow-xl p-6">
             <NavLink to="/sets" className="link link-accent hover:underline mb-4 inline-block">&larr; Back to Sets List</NavLink>
 
-            {isLoading && <p className="text-center mt-10">Loading set details...</p>}
+            {isLoading && (
+                <div className="flex justify-center items-center">
+                    <span className="loading loading-spinner loading-xl"></span>
+                </div>
+            )}
 
             {isError && (
                 <p className="text-center text-red-600 bg-red-100 p-3 rounded-lg mt-10">
