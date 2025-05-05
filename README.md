@@ -32,6 +32,7 @@ A web application built with React and TypeScript to browse and search for Poké
 * **Styling:** Tailwind CSS
 * **API:** TCGdex REST API (v2)
 * **Build Tool:** Create Vite App
+* **Backend:** Supabase (currently in local development)
 
 ## Getting Started (Example)
 
@@ -53,5 +54,5 @@ A web application built with React and TypeScript to browse and search for Poké
     * A visual indicator on cards.
     * A dedicated "Favorites" page or section.
     * State management (potentially using `localStorage` initially, or a backend).
-* **User Authentication:** Add user accounts (login/signup) to persist favorites and potentially other user-specific data across sessions/devices. This would likely require a backend service.
+* ~~**User Authentication:** Add user accounts (login/signup) to persist favorites and potentially other user-specific data across sessions/devices. This would likely require a backend service.~~
 
