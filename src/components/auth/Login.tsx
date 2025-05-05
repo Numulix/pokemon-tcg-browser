@@ -43,9 +43,11 @@ function Login() {
 
                 <label className='label'>Email</label>
                 <input type="email" placeholder='Email' className='input w-full' {...register("email", { required: "Please enter your email" })} />
+                {errors.email && <p className='text-red-500 text-sm'>{errors.email.message}</p>}
 
                 <label className='label'>Password</label>
                 <input type="password" placeholder='Password' className='input w-full' {...register("password", { required: "Please enter your password" })} />
+                {errors.password && <p className='text-red-500 text-sm'>{errors.password.message}</p>}
 
                 <button type='submit' disabled={isSubmitting} className='btn btn-neutral mt-4'>{isSubmitting ? (<span className='loading loading-spinner loading-xs'></span>) : 'Login' }</button>
                 <p className='text-sm text-center mt-2'>Don't have an account? <a href="/register" className='link'>Register</a></p>
